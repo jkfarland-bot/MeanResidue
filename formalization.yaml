@@ -8,13 +8,17 @@ project:
     f(n) = sum_{j <= n/4} floor(sqrt(jn)) - (n^2 - 1)/12. Chamberland and Dilcher (arXiv:2510.04387)
     evaluated f(p) through class numbers and stated five conjectures for composite n. The development
     proves, for every n, the reduction of f(n) to S_n and s(n) = #{k < n : n | k^2} in the four
-    classes of n modulo 4 (lattice points under the parabola and the pairing k -> n - k); for every
-    odd squarefree n, that the number of square roots of b modulo n is the sum of the Jacobi symbols
-    (b/d) over the divisors d of n; and from these, for every odd squarefree n, the formula
-    (n - 1)/2 - S_n = sum over the divisors d = 3 (mod 4) of hB(d) = -(1/d) sum_{a<d} a (a/d). It
-    derives Conjectures 7.3 and 7.4 of Chamberland and Dilcher, their formulas (7.3) and (7.4) for
-    n = pq, Bunyakovsky's identity f(p) = 0 for p = 1 (mod 4), and their Proposition 1.2, all with the
-    class number h*(-d) in its Bernoulli form hB(d).
+    classes of n modulo 4 (lattice points under the parabola and the pairing k -> n - k), and the
+    divisor form of the formula for S_n: (n - s(n))/2 - S_n = sum_{d | n} G(d), where G(d) is a
+    sawtooth sum of phi_d = sum_{e | d} mu(d/e) cnt(e, .) and cnt(e, b) counts the square roots of b
+    modulo e. It proves that G vanishes on d = 1, 2 (mod 4), that G(c) = -(1/c) sum_{a<c} a (-c/a) when
+    -c is a fundamental discriminant, and the conductor recursion G(l^2 c) = (l - (-c/l)) G(c) for every
+    prime l and c = 0, 3 (mod 4); with Dirichlet's class number formula and the conductor formula
+    (quoted) these give G(c) = h*(-c). It derives Conjectures 7.1 (with the sign of one term
+    corrected), 7.2, 7.3 and 7.4 of Chamberland and Dilcher, their formulas (7.3) and (7.4) for n = pq,
+    Bunyakovsky's identity f(p) = 0 for p = 1 (mod 4) and their Proposition 1.2, with the class
+    numbers in Bernoulli form, and Conjecture 7.5 (the limits of f(n)/n) from the class number bound
+    |G(c)| <= C sqrt(c) (1 + log c), stated as a hypothesis.
   authors:
     - "Joseph S. Farland"
   license: "Apache-2.0"
@@ -34,11 +38,12 @@ sources:
     relationship: "formalizes"
     note: >-
       The draft proves the conjectures for every n (Theorems 1.1 and 1.2). Formalized: Theorem 1.2
-      relative to S_n for every n; Theorem 1.1 for odd squarefree n in Bernoulli form; Conjectures 7.3
-      and 7.4, the formulas (7.3) and (7.4), Bunyakovsky's identity and Proposition 1.2 of
-      Chamberland and Dilcher, in Bernoulli form. Not formalized: Dirichlet's class number formula
-      hB(d) = h*(-d) (quoted); Theorem 1.1 for non-squarefree or even n, and with it Conjectures 7.1
-      and 7.2; Conjecture 7.5, which also needs a class-number bound.
+      relative to S_n for every n; Theorem 1.1 for every n in divisor form, with the values of G at
+      fundamental discriminants and the conductor recursion; Conjectures 7.1 (corrected), 7.2, 7.3
+      and 7.4, the formulas (7.3) and (7.4), Bunyakovsky's identity and Proposition 1.2 of Chamberland
+      and Dilcher, in Bernoulli form; Conjecture 7.5 from a class number bound. Not formalized:
+      Dirichlet's class number formula and the conductor formula for orders (quoted); the class
+      number bound used for Conjecture 7.5 (a hypothesis).
     license: "CC-BY-4.0"
     author_endorsement: "participated"
   - title: "Jacobi forms and a certain space of modular forms"
@@ -73,12 +78,14 @@ sources:
 
 status:
   scope: >-
-    Formalized: f(n) in terms of S_n and s(n) for every n; the root count modulo an odd squarefree n;
-    (n - 1)/2 - S_n = sum_{d | n, d = 3 (4)} hB(d) for odd squarefree n; Conjectures 7.3 and 7.4 of
-    Chamberland and Dilcher, their formulas (7.3) and (7.4), Bunyakovsky's identity and their
-    Proposition 1.2, in Bernoulli form; the number 1 + (u/p) of square roots of a unit u modulo p^m for an
-    odd prime p. Not formalized: Dirichlet's formula hB(d) = h*(-d);
-    non-squarefree and even n; Conjectures 7.1, 7.2 and 7.5.
+    Formalized: f(n) in terms of S_n and s(n) for every n; square roots modulo prime powers (including
+    2) and modulo odd squarefree n; (n - s(n))/2 - S_n = sum_{d | n} G(d) for every n, with G = 0 on
+    d = 1, 2 (mod 4), G(c) = hK(c) at fundamental discriminants -c and G(l^2 c) = (l - (-c/l)) G(c);
+    (n - 1)/2 - S_n = sum_{d | n, d = 3 (4)} hB(d) for odd squarefree n; Conjectures 7.1 (corrected),
+    7.2, 7.3 and 7.4 of Chamberland and Dilcher, their formulas (7.3) and (7.4), Bunyakovsky's identity
+    and their Proposition 1.2, in Bernoulli form; Conjecture 7.5 under the hypothesis
+    |G(c)| <= C sqrt(c) (1 + log c). Not formalized: Dirichlet's class number formula and the conductor
+    formula (quoted); the class number bound (hypothesis of conj_7_5).
   sorry_count: 0
   sorry_in_definitions: 0
   axioms: []
@@ -92,7 +99,7 @@ automation:
         AI-assisted: the Lean code was drafted and repaired by Claude against the draft's statements
         and proofs, compiled locally with lake, and checked with Palomar's lake comparator script.
       cost:
-        wall_time: "about two hours"
+        wall_time: "about two hours (stage one) and about five hours (stages two and three)"
         spend_usd: "subscription-based"
         hardware: "API-only plus local machine"
       prompting_notes: "The model was asked to formalize the proof of the Chamberland-Dilcher conjectures without sorry or native_decide."
@@ -103,11 +110,15 @@ automation:
 
 fidelity:
   divergences: >-
-    The class number h*(-d) appears in its Bernoulli form hB(d) = -(1/d) sum_{a<d} a (a/d) with the
-    Jacobi symbol; for squarefree d = 3 (mod 4) the two agree by Dirichlet's class number formula,
-    which is quoted. s(n) is defined as the number of square roots of 0 modulo n; the draft's
-    description as the largest integer whose square divides n is not formalized (s(n) = 1 for
-    squarefree n is). The draft's T(n) appears as defect n = (n - s(n))/2 - S_n.
+    The class number h*(-c) appears through G(c), which is defined from root counts; the formalization
+    proves that G has the base values hK(c) = -(1/c) sum_{a<c} a (-c/a) at fundamental discriminants and
+    satisfies the conductor recursion, and Dirichlet's class number formula and the conductor formula
+    (quoted) identify G(c) with h*(-c). For squarefree c = 3 (mod 4), hK(c) = hB(c) with the Jacobi
+    symbol. The Kronecker symbol (-c/a) is computed with Jacobi symbols ((a/c) for odd c, chi_4(a)(c/a)
+    for even c), which agrees with the Kronecker symbol for c = 0, 3 (mod 4). s(n) is defined as the
+    number of square roots of 0 modulo n; s(n)^2 | n, s(p^a q^b) = p^floor(a/2) q^floor(b/2) and
+    s(n) = 1 for squarefree n are proved. The draft's T(n) appears as defect n = (n - s(n))/2 - S_n.
+    Conjecture 7.5 takes the class number bound as a hypothesis.
 
 review:
   status: "self-assessed"

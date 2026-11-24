@@ -73,8 +73,8 @@ theorem isMultiplicative_jacAF (a : ℤ) : (jacAF a).IsMultiplicative := by
   rw [IsMultiplicative.iff_ne_zero]
   refine ⟨?_, fun {m n} hm hn _ => ?_⟩
   · rw [jacAF_apply a one_ne_zero, jacobiSym.one_right]
-  · haveI : NeZero m := ⟨hm⟩
-    haveI : NeZero n := ⟨hn⟩
+  · have : NeZero m := ⟨hm⟩
+    have : NeZero n := ⟨hn⟩
     rw [jacAF_apply a (mul_ne_zero hm hn), jacAF_apply a hm, jacAF_apply a hn,
       jacobiSym.mul_right]
 
@@ -93,7 +93,7 @@ theorem cnt_eq_sum_jacobi {n : ℕ} (hn : Squarefree n) (hodd : Odd n) (a : ℤ)
     have hpp : p.Prime := Nat.prime_of_mem_primeFactors hp
     have hpn : p ∣ n := Nat.dvd_of_mem_primeFactors hp
     rw [Nat.factorization_eq_one_of_squarefree hn hpp hpn, pow_one]
-    haveI := Fact.mk hpp
+    have := Fact.mk hpp
     have hp2 : p ≠ 2 := by
       intro h2
       have := Odd.of_dvd_nat hodd hpn

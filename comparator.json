@@ -17,7 +17,21 @@
     "MeanResidue.bunyakovsky",
     "MeanResidue.f_prime_three",
     "MeanResidue.S_pq",
-    "MeanResidue.f_pq"
+    "MeanResidue.f_pq",
+    "MeanResidue.cnt_pow_add_two_mul_sq",
+    "MeanResidue.cnt_two_pow_unit",
+    "MeanResidue.defect_eq_sum_G",
+    "MeanResidue.moebius_defect",
+    "MeanResidue.G_one_mod_four",
+    "MeanResidue.G_two_mod_four",
+    "MeanResidue.defect_odd",
+    "MeanResidue.G_squarefree",
+    "MeanResidue.G_peel",
+    "MeanResidue.G_fundamental",
+    "MeanResidue.G_conductor",
+    "MeanResidue.conj_7_1",
+    "MeanResidue.conj_7_2",
+    "MeanResidue.conj_7_5"
   ],
   "definition_names": [],
   "permitted_axioms": [

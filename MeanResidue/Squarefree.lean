@@ -162,10 +162,10 @@ theorem divisor_term (n d : ℕ) (hd : d ∣ n) (hdo : Odd d) (hn0 : 0 < n) :
     omega
   rcases hd4 with h | h
   · rw [ZMod.χ₄_nat_one_mod_four h] at h1
-    rw [if_neg (by omega)]
+    rw [ite_eq_right (by omega)]
     push_cast at h1
     linarith
-  · rw [if_pos h]
+  · rw [ite_eq_left h]
     have hχ : (ZMod.χ₄ d : ℚ) = -1 := by
       rw [ZMod.χ₄_nat_three_mod_four h]; norm_num
     -- the sum of `(b/d)` over `0 < b < m` vanishes for every multiple `m` of `d`
