@@ -91,3 +91,10 @@ development; Palomar's `lake comparator` accepts the pair with the Lean, nanoda 
   orders; the formalization proves that `G` satisfies the same base values and the same recursion.
 - The analytic bound `h*(-c) ≤ C √c (1 + log c)`, which enters only `conj_7_5_of_class_number_bound` as a
   hypothesis; `conj_7_5` does not need it.
+
+## Numerical checks
+
+The folder [`numerics/`](numerics/) holds the Python scripts behind Section 8 of the note, with their outputs.
+They check the note's statements in exact rational arithmetic, with class numbers counted from reduced
+forms, independently of the Lean development. They are not part of the formalization or of the comparator
+check.
