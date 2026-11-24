@@ -82,11 +82,11 @@ theorem conj_7_3_combined {d : ℕ} (hd : Squarefree d) (hodd : Odd d) :
   rcases h4 with h | h
   · rw [conj_7_3_one hd h]
     unfold δ
-    rw [if_neg (by omega)]
+    rw [ite_eq_right (by omega)]
     ring
   · rw [conj_7_3_three hd h]
     unfold δ
-    rw [if_pos h]
+    rw [ite_eq_left h]
     ring
 
 /-- Möbius inversion of a divisor sum, in the form needed here. -/

@@ -1,14 +1,18 @@
 # MeanResidue
 
-Lean 4 / Mathlib formalization, stage one, of the proof of the conjectures of M. Chamberland and
-K. Dilcher (*Sums of the floor function related to class numbers of imaginary quadratic fields*,
-arXiv:2510.04387, Section 7) in J. S. Farland, *Mean quadratic residues, floor sums of square roots,
-and class numbers* (draft, 2026).
+Lean 4 / Mathlib formalization of the proof of the conjectures of M. Chamberland and K. Dilcher
+(*Sums of the floor function related to class numbers of imaginary quadratic fields*, arXiv:2510.04387,
+Section 7) in J. S. Farland, *Mean quadratic residues, floor sums of square roots, and class numbers*
+(draft, 2026).
 
 For `n ≥ 1` put `S n = (1/n) ∑_{k<n} Rem(k² ÷ n)`, `f n = ∑_{j=1}^{⌊n/4⌋} ⌊√(jn)⌋ - (n² - 1)/12`,
 `s n = #{k < n : n ∣ k²}`, `defect n = (n - s n)/2 - S n`, and `hB d = -(1/d) ∑_{a<d} a (a/d)` with the
 Jacobi symbol (for squarefree `d ≡ 3 (mod 4)`, `hB d` is the weighted class number `h*(-d)` by
-Dirichlet's formula). Proved:
+Dirichlet's formula). Let `cnt n b` be the number of square roots of `b` modulo `n`,
+`phi d b = ∑_{e ∣ d} μ(d/e) cnt(e, b)`, `Lam d g = -(1/d) ∑_{0<b<d} g(b)(b - d/2)` and
+`G d = Lam d (phi d ·)`.
+
+## Stage one
 
 - **Theorem 1.2, for every `n`** (`f_mod_four_eq_one`, `_three`, `_zero`, `_two`):
   `f n = (s n - 1)/4 - defect n/2`, `(s n - n)/4 - defect n/2`, `n/8 + s n/4 - defect n/2`,
@@ -25,12 +29,38 @@ Dirichlet's formula). Proved:
   `f p = 0` for `p ≡ 1 (mod 4)` (`bunyakovsky`) and Proposition 1.2 (`f_prime_three`), with `hB` in
   place of `h*`.
 
+## Stages two and three
+
+- **Square roots modulo prime powers** (`cnt_pow_add_two_mul_sq`, `cnt_two_pow_unit`):
+  `cnt (p^(i+2)) (p² b) = p cnt (p^i) b` for every prime `p`; an odd `u` has `4` square roots modulo
+  `2^m` (`m ≥ 3`) if `u ≡ 1 (mod 8)` and none otherwise.
+- **Theorem 1.1 for every `n`, divisor form** (`defect_eq_sum_G`): `(n - s(n))/2 - S n = ∑_{d ∣ n} G d`.
+  The proof: `cnt n = ∑_{d ∣ n} phi d` (Möbius inversion), `n defect n` is the sawtooth sum of `cnt n`,
+  and a function periodic modulo `d` has the same sawtooth sum at every multiple of `d`.
+- **The terms `G c`**: `G c = 0` for `c ≡ 1, 2 (mod 4)` (`G_one_mod_four`, `G_two_mod_four`);
+  `G c = hK c = -(1/c) ∑_{a<c} a (-c/a)` when `-c` is a fundamental discriminant (`G_fundamental`); and the
+  conductor recursion `G (ℓ² c) = (ℓ - (-c/ℓ)) G c` for every prime `ℓ` and `c ≡ 0, 3 (mod 4)`
+  (`G_conductor`), with the Kronecker symbol `(-c/ℓ)` computed from Jacobi symbols (`kron`). With
+  Dirichlet's formula `hK c = h*(-c)` and the conductor formula `h*(ℓ² D) = (ℓ - (D/ℓ)) h*(D)` (both quoted)
+  these say `G c = h*(-c)`, which is Theorem 1.1. The tools: the twist rule `phi d (x b) = (x/d) phi d b`
+  for odd `d`, the even and odd parts of `phi (2^j)` (eigenfunctions of the odd twists with eigenvalues
+  `χ₈^j` and `χ₄ χ₈^j`), and a peeling lemma for the sawtooth functional under dilations.
+- **Möbius form** (`moebius_defect`): `∑_{d ∣ n} μ(n/d) defect(d) = G n` for every `n` (Corollary 1.3(d)).
+- **Conjecture 7.1** (`conj_7_1`), with the sign of its `h*(-pq)` term corrected, and **Conjecture 7.2**
+  (`conj_7_2`), for `n = p^α q^β` and all `α, β ≥ 0`, in Bernoulli form, with `[e]_ℓ = 1 + ℓ + ⋯ + ℓ^(e-1)`
+  (`geom`).
+- **Conjecture 7.5** (`conj_7_5`): `f(n)/n → 1/8, 0, -1/8, -1/4` along `n ≡ 0, 1, 2, 3 (mod 4)`, assuming
+  the class number bound `|G c| ≤ C √c (1 + log c)` (which holds with `C = 1`, since
+  `h*(-c) = (√c/π) L(1, -c)` and `|L(1, -c)| ≤ 3 + log c`). From it the development proves
+  `defect n = o(n)` (Cauchy–Schwarz with `τ(n) ≤ 2√n` and `σ(n) ≤ n(1 + log n)`) and `s(n)² ∣ n`.
+
 Prior work. The formula for `S n` behind all of this (Theorem 1.1 of the draft, for every `n`) is the case
 `a = 1` of Proposition A.2 of N.-P. Skoruppa and D. Zagier, *Jacobi forms and a certain space of modular forms*,
 Invent. Math. 94 (1988), and was recorded in the form `∑_{k≤n} (k² mod n) = n(n - m)/2 - 2n ∑ h(D)/w(D)` in OEIS
-A048153 by O. Kutal (2026). The proof formalized here for odd squarefree `n` is the elementary one (root counts by
-Jacobi symbols and the pairing `b ↦ n - b`). The derivation of Chamberland and Dilcher's conjectures from the
-formula is the new part.
+A048153 by O. Kutal (2026). The proof formalized here is elementary: root counts modulo prime powers, Möbius
+inversion, the twist rule and a sawtooth functional; class numbers enter only through Dirichlet's formula and the
+conductor formula, which are quoted. The derivation of Chamberland and Dilcher's conjectures from the formula is the
+new part.
 
 Toolchain: `leanprover/lean4:v4.35.0`, Mathlib `v4.35.0`.
 
@@ -46,7 +76,8 @@ development; Palomar's `lake comparator` accepts the pair with the Lean, nanoda 
 
 ## Not formalized
 
-- Dirichlet's class number formula `hB d = h*(-d)` (Mathlib has no class numbers of binary quadratic
-  forms or of imaginary quadratic orders), and the conductor formula for orders.
-- Theorem 1.1 for non-squarefree or even `n`; Conjectures 7.1 and 7.2 (prime powers `p^α q^β`) and
-  Conjecture 7.5 (limits, which also need the bound `h*(-c) ≪ √c log c`).
+- Dirichlet's class number formula `hK c = h*(-c)` for fundamental discriminants (Mathlib has no class
+  numbers of binary quadratic forms or of imaginary quadratic orders) and the conductor formula for
+  orders; the formalization proves that `G` satisfies the same base values and the same recursion.
+- The analytic bound `h*(-c) ≤ C √c (1 + log c)` used for Conjecture 7.5, which enters `conj_7_5` as a
+  hypothesis.

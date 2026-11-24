@@ -255,7 +255,7 @@ theorem F_mid3a (J : ℕ) : F (4 * J + 3) (2 * J + 1) = (J + 1) / (4 * J + 3) :=
   have hd : ¬ (4 * J + 3) ∣ (2 * J + 1) ^ 2 := by
     rw [Nat.dvd_iff_mod_eq_zero, hm]; omega
   unfold F
-  rw [hm, if_neg hd]
+  rw [hm, ite_eq_right hd]
   push_cast
   ring
 
@@ -266,7 +266,7 @@ theorem F_mid3b (J : ℕ) : F (4 * J + 3) (2 * J + 2) = (J + 1) / (4 * J + 3) :=
   have hd : ¬ (4 * J + 3) ∣ (2 * J + 2) ^ 2 := by
     rw [Nat.dvd_iff_mod_eq_zero, hm]; omega
   unfold F
-  rw [hm, if_neg hd]
+  rw [hm, ite_eq_right hd]
   push_cast
   ring
 
@@ -274,7 +274,7 @@ theorem F_mid0 (J : ℕ) : F (4 * J) (2 * J) = 1 := by
   have hm : (2 * J) ^ 2 % (4 * J) = 0 := by
     rw [show (2 * J) ^ 2 = (4 * J) * J by ring, Nat.mul_mod_right]
   unfold F
-  rw [hm, if_pos (Nat.dvd_of_mod_eq_zero hm)]
+  rw [hm, ite_eq_left (Nat.dvd_of_mod_eq_zero hm)]
   simp
 
 theorem F_mid2 (J : ℕ) : F (4 * J + 2) (2 * J + 1) = 1 / 2 := by
@@ -284,7 +284,7 @@ theorem F_mid2 (J : ℕ) : F (4 * J + 2) (2 * J + 1) = 1 / 2 := by
   have hd : ¬ (4 * J + 2) ∣ (2 * J + 1) ^ 2 := by
     rw [Nat.dvd_iff_mod_eq_zero, hm]; omega
   unfold F
-  rw [hm, if_neg hd]
+  rw [hm, ite_eq_right hd]
   push_cast
   field_simp
   ring
@@ -323,7 +323,7 @@ theorem f_mod_four_eq_three (n : ℕ) (h : n % 4 = 3) :
       -F (4 * J + 3) (2 * J + 1) - F (4 * J + 3) (2 * J + 2) := by
     simp only [mul_sub, mul_neg, mul_ite, mul_one, mul_zero, sum_sub_distrib, sum_neg_distrib,
       sum_ite_eq', mem_Ico]
-    rw [if_pos (by omega), if_pos (by omega)]
+    rw [ite_eq_left (by omega), ite_eq_left (by omega)]
   rw [e, F_mid3a, F_mid3b] at hw
   have hsum : ∑ k ∈ Icc 1 (2 * J), F (4 * J + 3) k = (S (4 * J + 3) + s (4 * J + 3) - 1 -
       2 * ((J + 1) / (4 * J + 3))) / 2 := by
@@ -349,7 +349,7 @@ theorem f_mod_four_eq_zero (n : ℕ) (hn : 0 < n) (h : n % 4 = 0) :
   have e : ∑ k ∈ Ico 1 (4 * J), F (4 * J) k * (if k = 2 * J then (1 : ℚ) else 0) =
       F (4 * J) (2 * J) := by
     simp only [mul_ite, mul_one, mul_zero, sum_ite_eq', mem_Ico]
-    rw [if_pos (by omega)]
+    rw [ite_eq_left (by omega)]
   rw [e, F_mid0 J] at hw
   have hsum : ∑ k ∈ Icc 1 (2 * J), F (4 * J) k = (S (4 * J) + s (4 * J)) / 2 := by
     linarith
@@ -374,7 +374,7 @@ theorem f_mod_four_eq_two (n : ℕ) (h : n % 4 = 2) :
   have e : ∑ k ∈ Ico 1 (4 * J + 2), F (4 * J + 2) k * (-(if k = 2 * J + 1 then (1 : ℚ) else 0)) =
       -F (4 * J + 2) (2 * J + 1) := by
     simp only [mul_neg, mul_ite, mul_one, mul_zero, sum_neg_distrib, sum_ite_eq', mem_Ico]
-    rw [if_pos (by omega)]
+    rw [ite_eq_left (by omega)]
   rw [e, F_mid2] at hw
   have hsum : ∑ k ∈ Icc 1 (2 * J), F (4 * J + 2) k =
       (S (4 * J + 2) + s (4 * J + 2) - 1 - 1 / 2) / 2 := by
