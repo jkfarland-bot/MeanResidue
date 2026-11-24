@@ -1,0 +1,4 @@
+(1) Gauss sum lemma, c <= 300, all a <= 2c prime to c: failures 0
+(2) character identities, c <= 2000, a < 400: failures 0
+(3) class number formula for orders, 26 discriminants incl. non-fundamental: max |error| 4.2e-05 (partial sums)
+(4) h*(-n)[n = 0,3 mod 4] = sum_{d|n} mu(n/d)((d - s(d))/2 - S_d), n <= 6000: failures 0

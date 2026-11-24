@@ -1,0 +1,1 @@
+f <= 400: SZ Hurwitz sum = T(f) failures: 0 ; |LHS - (-2 SZ)| max = 1.07e-09 ; LHS = 2 Lambda(f) failures: 0

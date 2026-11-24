@@ -1,0 +1,27 @@
+ranges: root counts and gamma for d <= 2000; bound for n <= 20000
+6.1(a) Delta(n) = Lam_n(rho_n): 2000 checks, 0 failures
+6.2 Delta(n) = sum_{d|n} gamma(d): 2000 checks, 0 failures
+rho_n(0) = s(n): 2000 checks, 0 failures
+6.3(a) rho_{p^(e+2)}(p^2 b) = p rho_{p^e}(b): 30 checks, 0 failures
+6.3(b) phi_p = (b/p): 302 checks, 0 failures
+6.3(b) phi_{p^2} = nu_p: 13 checks, 0 failures
+6.3(b) phi_{p^(e+2)}(b) = p[p^2|b] phi_{p^e}(b/p^2): 8 checks, 0 failures
+6.3(c) phi_2 = 0: 1 checks, 0 failures
+6.3(c) phi_4 = nu_2 + chi_-4: 1 checks, 0 failures
+6.3(c) phi_8 = chi_8 + chi_-8: 1 checks, 0 failures
+6.3(c) phi_{2^(e+2)}(b) = 2[4|b] phi_{2^e}(b/4), e >= 2: 7 checks, 0 failures
+6.4 twist rule and unit squares: 97435 checks, 0 failures
+6.4 parity: 200 checks, 0 failures
+6.6 odd part twist (-c/l): 43572 checks, 0 failures
+6.6 phi_c odd for c = 3 mod 4: 500 checks, 0 failures
+6.6 phi_c(2b) = (-c/2) phi_c(b): 500 checks, 0 failures
+6.8(a) gamma = 0 on 1, 2 mod 4: 1000 checks, 0 failures
+6.8(b) gamma(c) = Bernoulli form at fundamental -c: 611 checks, 0 failures
+6.8(c) gamma(l^2 c) = (l - (-c/l)) gamma(c): 438 checks, 0 failures
+Theorem 1.1, second proof: gamma(c) = h*(-c): 1000 checks, 0 failures
+proof of 5.3: Fourier coefficient 1/(zeta-1) + 1/2: 44850 checks, 0 failures
+proof of 5.3: |coefficient| <= n/(4 min(h, n-h)): 44850 checks, 0 failures
+proof of 5.3: |G(h;n)|^2 <= n gcd(2h, n): 44850 checks, 0 failures
+Proposition 5.3: Delta(n)^2 <= n^{3/2}(1 + log n)^3: 20000 checks, 0 failures
+largest |Delta(n)| / (n^(3/4) (1 + log n)^(3/2)) for 2 <= n <= 20000: 0.0584 at n = 8
+ALL OK
