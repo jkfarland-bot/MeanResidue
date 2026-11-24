@@ -3,7 +3,15 @@
   "upload_type": "software",
   "creators": [
     {
-      "name": "Farland, Joseph S."
+      "name": "Farland, Joseph S.",
+      "orcid": "0009-0007-6809-804X"
+    }
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "arXiv:2510.04387",
+      "relation": "references",
+      "scheme": "arxiv"
     }
   ],
   "license": "Apache-2.0",
