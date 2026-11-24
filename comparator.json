@@ -1,0 +1,29 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "MeanResidue.f_mod_four_eq_one",
+    "MeanResidue.f_mod_four_eq_three",
+    "MeanResidue.f_mod_four_eq_zero",
+    "MeanResidue.f_mod_four_eq_two",
+    "MeanResidue.cnt_eq_sum_jacobi",
+    "MeanResidue.cnt_unit",
+    "MeanResidue.s_squarefree",
+    "MeanResidue.defect_squarefree",
+    "MeanResidue.S_squarefree",
+    "MeanResidue.conj_7_3_one",
+    "MeanResidue.conj_7_3_three",
+    "MeanResidue.conj_7_4",
+    "MeanResidue.bunyakovsky",
+    "MeanResidue.f_prime_three",
+    "MeanResidue.S_pq",
+    "MeanResidue.f_pq"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}
