@@ -49,10 +49,20 @@ Dirichlet's formula). Let `cnt n b` be the number of square roots of `b` modulo 
 - **Conjecture 7.1** (`conj_7_1`), with the sign of its `h*(-pq)` term corrected, and **Conjecture 7.2**
   (`conj_7_2`), for `n = p^α q^β` and all `α, β ≥ 0`, in Bernoulli form, with `[e]_ℓ = 1 + ℓ + ⋯ + ℓ^(e-1)`
   (`geom`).
-- **Conjecture 7.5** (`conj_7_5`): `f(n)/n → 1/8, 0, -1/8, -1/4` along `n ≡ 0, 1, 2, 3 (mod 4)`, assuming
-  the class number bound `|G c| ≤ C √c (1 + log c)` (which holds with `C = 1`, since
-  `h*(-c) = (√c/π) L(1, -c)` and `|L(1, -c)| ≤ 3 + log c`). From it the development proves
-  `defect n = o(n)` (Cauchy–Schwarz with `τ(n) ≤ 2√n` and `σ(n) ≤ n(1 + log n)`) and `s(n)² ∣ n`.
+- **Conjecture 7.5 from a class number bound** (`conj_7_5_of_class_number_bound`): the limits, assuming
+  `|G c| ≤ C √c (1 + log c)` (the route of the note: `h*(-c) = (√c/π) L(1, -c)` and
+  `|L(1, -c)| ≤ 3 + log c`), via Cauchy–Schwarz with `τ(n) ≤ 2√n` and `σ(n) ≤ n(1 + log n)`, and `s(n)² ∣ n`.
+
+## Stage four
+
+- **An unconditional bound** (`defect_sq_le`): `defect(n)² ≤ n √n (1 + log n)³` for every `n ≥ 1`. No class
+  numbers: `-defect n = ∑_{x ∈ ℤ/n} saw(x²)` with the sawtooth `saw`; Mathlib's discrete Fourier transform on
+  `ZMod n` gives `∑_x saw(x²) = (1/n) ∑_h 𝓕saw(h) G(h)` with `G(h) = ∑_x e(hx²/n)`; the coefficients are
+  explicit (`𝓕saw(h) = 1/(ζ - 1) + 1/2`, `ζ = e(-h/n)`, so `‖𝓕saw(h)‖ ≤ n/(4 min(h, n - h))` by Jordan's
+  inequality); Weyl differencing gives `‖G(h)‖² ≤ n gcd(2h, n)`; and the sum over `h` is bounded through
+  the divisors of `n`.
+- **Conjecture 7.5** (`conj_7_5`), unconditionally: `f(n)/n → 1/8, 0, -1/8, -1/4` along
+  `n ≡ 0, 1, 2, 3 (mod 4)`.
 
 Prior work. The formula for `S n` behind all of this (Theorem 1.1 of the draft, for every `n`) is the case
 `a = 1` of Proposition A.2 of N.-P. Skoruppa and D. Zagier, *Jacobi forms and a certain space of modular forms*,
@@ -79,5 +89,5 @@ development; Palomar's `lake comparator` accepts the pair with the Lean, nanoda 
 - Dirichlet's class number formula `hK c = h*(-c)` for fundamental discriminants (Mathlib has no class
   numbers of binary quadratic forms or of imaginary quadratic orders) and the conductor formula for
   orders; the formalization proves that `G` satisfies the same base values and the same recursion.
-- The analytic bound `h*(-c) ≤ C √c (1 + log c)` used for Conjecture 7.5, which enters `conj_7_5` as a
-  hypothesis.
+- The analytic bound `h*(-c) ≤ C √c (1 + log c)`, which enters only `conj_7_5_of_class_number_bound` as a
+  hypothesis; `conj_7_5` does not need it.

@@ -18,7 +18,8 @@ residue), `MeanResidue/Count.lean` (square roots modulo an odd squarefree `n`),
 `MeanResidue/Lambda.lean` (the sawtooth functional and Theorem 1.1 in divisor form for every `n`),
 `MeanResidue/OddPeel.lean` and `MeanResidue/EvenPeel.lean` (the values at fundamental discriminants and
 the conductor recursion), `MeanResidue/TwoAdic.lean` (the `2`-adic factor), `MeanResidue/TwoPrimes.lean`
-(Conjectures 7.1 and 7.2) and `MeanResidue/Limits.lean` (Conjecture 7.5 from a class number bound). The
+(Conjectures 7.1 and 7.2), `MeanResidue/Limits.lean` (Conjecture 7.5 from a class number bound) and
+`MeanResidue/Weyl.lean` (the unconditional bound on `defect n` and Conjecture 7.5). The
 definitions are those of `MeanResidue/Defs.lean`, `MeanResidue/Count.lean` (`cnt`, `cntAF`),
 `MeanResidue/Conjectures.lean` (`δ`), `MeanResidue/Phi.lean` (`phiAF`, `phi`), `MeanResidue/Lambda.lean`
 (`Lam`, `G`), `MeanResidue/TwoPrimes.lean` (`geom`) and `MeanResidue/EvenPeel.lean` (`kron`, `hK`,

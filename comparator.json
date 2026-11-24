@@ -31,6 +31,8 @@
     "MeanResidue.G_conductor",
     "MeanResidue.conj_7_1",
     "MeanResidue.conj_7_2",
+    "MeanResidue.conj_7_5_of_class_number_bound",
+    "MeanResidue.defect_sq_le",
     "MeanResidue.conj_7_5"
   ],
   "definition_names": [],
