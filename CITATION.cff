@@ -5,7 +5,7 @@ authors:
   - family-names: Farland
     given-names: Joseph S.
     orcid: "https://orcid.org/0009-0007-6809-804X"
-version: v1.0.1
+version: v1.0.2
 date-released: 2026-11-24
 doi: 10.5281/zenodo.24507181
 license: Apache-2.0
@@ -18,3 +18,15 @@ keywords:
   - Lean 4
   - Mathlib
   - formal verification
+preferred-citation:
+  type: article
+  title: "Mean quadratic residues, floor sums of square roots, and class numbers: the conjectures of Chamberland and Dilcher"
+  authors:
+    - family-names: Farland
+      given-names: Joseph S.
+      orcid: "https://orcid.org/0009-0007-6809-804X"
+  year: 2026
+  doi: 10.5281/zenodo.24508994
+  publisher:
+    name: Zenodo
+  notes: "Preprint, version v1.0: doi:10.5281/zenodo.24508995"
