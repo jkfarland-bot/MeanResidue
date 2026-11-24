@@ -226,8 +226,8 @@ theorem G_fundamental {c : ℕ} (hc : IsFundamental c) : G c = hK c := by
   sorry
 
 /-- **The conductor recursion**: `G (ℓ² c) = (ℓ - (-c/ℓ)) G c` for every prime `ℓ` and every
-`c ≡ 0, 3 (mod 4)`. -/
-theorem G_conductor {ℓ c : ℕ} (hℓ : ℓ.Prime) (hc : c % 4 = 0 ∨ c % 4 = 3) :
+`c > 0` with `c ≡ 0, 3 (mod 4)`. -/
+theorem G_conductor {ℓ c : ℕ} (hℓ : ℓ.Prime) (hc0 : 0 < c) (hc : c % 4 = 0 ∨ c % 4 = 3) :
     G (ℓ ^ 2 * c) = (ℓ - kron c ℓ) * G c := by
   sorry
 

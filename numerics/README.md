@@ -1,10 +1,14 @@
 # Numerical checks
 
 Python scripts for the numerical verification in Section 8 of J. S. Farland, *Mean quadratic residues,
-floor sums of square roots, and class numbers: the conjectures of Chamberland and Dilcher* (2026). They
-are independent of the Lean formalization. Everything is computed in exact rational arithmetic (Python
-`fractions`), and the class numbers `h(D)` are computed by counting reduced primitive binary quadratic
-forms, so no `L`-function and no class number formula is used.
+floor sums of square roots, and class numbers: the conjectures of Chamberland and Dilcher*, preprint,
+Zenodo, 2026, [doi:10.5281/zenodo.24508994](https://doi.org/10.5281/zenodo.24508994). They check selected
+statements of the note over the finite ranges listed below, independently of the Lean formalization.
+The class numbers `h(D)` are computed by counting reduced primitive binary quadratic forms, so no
+`L`-function and no class number formula is used. The identities are checked in exact rational
+arithmetic (Python `fractions`); the checks that involve complex exponentials (Gauss sums, the cotangent
+sums of Skoruppa and Zagier, the Fourier coefficients of Proposition 5.3) and partial sums of `L(1, D)`
+use floating point.
 
 Requirements: Python 3 and NumPy. The scripts can be run from any directory; `cd1` to `cd4` import the
 shared module `cd_lib.py` from this folder. Each `cdN_out.txt` is the output of `cdN_*.py` with the

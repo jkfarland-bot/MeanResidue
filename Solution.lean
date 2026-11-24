@@ -15,7 +15,7 @@ residue), `MeanResidue/Count.lean` (square roots modulo an odd squarefree `n`),
 (7.3), (7.4), Bunyakovsky's identity and their Proposition 1.2), `MeanResidue/PrimePower.lean` and
 `MeanResidue/RootCount.lean` (square roots modulo prime powers, including `2`), `MeanResidue/Phi.lean`
 (the divisor decomposition `phi` of the root count, its prime-power values and twist rule),
-`MeanResidue/Lambda.lean` (the sawtooth functional and Theorem 1.1 in divisor form for every `n`),
+`MeanResidue/Lambda.lean` (the sawtooth functional and Theorem 1.1 in divisor form for every `n ≥ 1`),
 `MeanResidue/OddPeel.lean` and `MeanResidue/EvenPeel.lean` (the values at fundamental discriminants and
 the conductor recursion), `MeanResidue/TwoAdic.lean` (the `2`-adic factor), `MeanResidue/TwoPrimes.lean`
 (Conjectures 7.1 and 7.2), `MeanResidue/Limits.lean` (Conjecture 7.5 from a class number bound) and

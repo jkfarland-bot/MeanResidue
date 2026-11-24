@@ -5,12 +5,12 @@ public import MeanResidue.TwoAdic
 @[expose] public section
 
 /-!
-# Theorem 1.1 for every `n`: fundamental discriminants and the conductor recursion
+# Theorem 1.1 for every `n ≥ 1`: fundamental discriminants and the conductor recursion
 
 Let `kron c a` be the Kronecker symbol `(-c/a)` for `c ≡ 0, 3 (mod 4)` (computed with Jacobi symbols:
 `(a/c)` for odd `c`, `χ₄(a) (c/a)` for even `c`) and `hK c = -(1/c) ∑_{a<c} a (-c/a)`. Then
 * `G c = hK c` whenever `-c` is a fundamental discriminant (`G_fundamental`);
-* `G (ℓ² c) = (ℓ - (-c/ℓ)) G c` for every prime `ℓ` and `c ≡ 0, 3 (mod 4)` (`G_conductor`);
+* `G (ℓ² c) = (ℓ - (-c/ℓ)) G c` for every prime `ℓ` and `c > 0` with `c ≡ 0, 3 (mod 4)` (`G_conductor`);
 * `G d = 0` for `d ≡ 1, 2 (mod 4)` (Lambda.lean), and `defect n = ∑_{d ∣ n} G d` (Lambda.lean).
 
 With Dirichlet's class number formula (`hK c = h*(-c)` for fundamental `-c`) and the conductor formula
@@ -208,14 +208,11 @@ theorem G_zero : G 0 = 0 := by
   simp [G, Lam]
 
 /-- **The conductor recursion**: `G (ℓ² c) = (ℓ - (-c/ℓ)) G c` for every prime `ℓ` and every
-`c ≡ 0, 3 (mod 4)`. -/
-theorem G_conductor {ℓ c : ℕ} (hℓ : ℓ.Prime) (hc : c % 4 = 0 ∨ c % 4 = 3) :
+`c > 0` with `c ≡ 0, 3 (mod 4)`. -/
+theorem G_conductor {ℓ c : ℕ} (hℓ : ℓ.Prime) (hc0 : 0 < c) (hc : c % 4 = 0 ∨ c % 4 = 3) :
     G (ℓ ^ 2 * c) = (ℓ - kron c ℓ) * G c := by
   rcases hc with h0 | h3
-  · rcases Nat.eq_zero_or_pos c with hz | hpos
-    · subst hz
-      simp [G_zero]
-    obtain ⟨k, c', hc', rfl⟩ := exists_two_pow_mul hpos.ne' h0
+  · obtain ⟨k, c', hc', rfl⟩ := exists_two_pow_mul hc0.ne' h0
     by_cases h2 : ℓ = 2
     · subst h2
       have hk : kron (2 ^ (k + 2) * c') 2 = 0 := by
@@ -238,7 +235,7 @@ theorem G_conductor {ℓ c : ℕ} (hℓ : ℓ.Prime) (hc : c % 4 = 0 ∨ c % 4 =
           push_cast at hJ
           push_cast
           rw [hJ, mul_zero]
-        rw [G_peel_dvd hℓ h2 hpos.ne' (dvd_mul_of_dvd_right hdvd _), hk]
+        rw [G_peel_dvd hℓ h2 hc0.ne' (dvd_mul_of_dvd_right hdvd _), hk]
         push_cast
         ring
       · exact G_peel_even_coprime k hc' hℓ h2 hdvd
