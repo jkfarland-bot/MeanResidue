@@ -7,13 +7,13 @@ project:
     For n >= 1 let S_n be the mean of the least residues of the squares modulo n and
     f(n) = sum_{j <= n/4} floor(sqrt(jn)) - (n^2 - 1)/12. Chamberland and Dilcher (arXiv:2510.04387)
     evaluated f(p) through class numbers and stated five conjectures for composite n. The development
-    proves, for every n, the reduction of f(n) to S_n and s(n) = #{k < n : n | k^2} in the four
+    proves, for every n >= 1, the reduction of f(n) to S_n and s(n) = #{k < n : n | k^2} in the four
     classes of n modulo 4 (lattice points under the parabola and the pairing k -> n - k), and the
     divisor form of the formula for S_n: (n - s(n))/2 - S_n = sum_{d | n} G(d), where G(d) is a
     sawtooth sum of phi_d = sum_{e | d} mu(d/e) cnt(e, .) and cnt(e, b) counts the square roots of b
     modulo e. It proves that G vanishes on d = 1, 2 (mod 4), that G(c) = -(1/c) sum_{a<c} a (-c/a) when
     -c is a fundamental discriminant, and the conductor recursion G(l^2 c) = (l - (-c/l)) G(c) for every
-    prime l and c = 0, 3 (mod 4); with Dirichlet's class number formula and the conductor formula
+    prime l and every c > 0 with c = 0, 3 (mod 4); with Dirichlet's class number formula and the conductor formula
     (quoted) these give G(c) = h*(-c). It derives Conjectures 7.1 (with the sign of one term
     corrected), 7.2, 7.3 and 7.4 of Chamberland and Dilcher, their formulas (7.3) and (7.4) for n = pq,
     Bunyakovsky's identity f(p) = 0 for p = 1 (mod 4) and their Proposition 1.2, with the class
@@ -21,7 +21,7 @@ project:
     bound defect(n)^2 <= n sqrt(n) (1 + log n)^3, proved with the discrete Fourier transform on Z/n,
     explicit Fourier coefficients of the sawtooth and Weyl differencing for the quadratic Gauss sums
     (no class numbers). A second proof of Conjecture 7.5 from the class number bound
-    |G(c)| <= C sqrt(c) (1 + log c), stated as a hypothesis, follows the note.
+    |G(c)| <= C sqrt(c) (1 + log c), stated as a hypothesis, follows the first proof in the note.
   authors:
     - "Joseph S. Farland"
   license: "Apache-2.0"
@@ -37,17 +37,19 @@ sources:
     authors:
       - "Joseph S. Farland"
     type: "article"
-    location: "Unpublished manuscript (draft), 2026"
+    location: "Preprint, Zenodo, 2026, https://doi.org/10.5281/zenodo.24508995 (v1.0); all versions https://doi.org/10.5281/zenodo.24508994"
     relationship: "formalizes"
     note: >-
-      The draft proves the conjectures for every n (Theorems 1.1 and 1.2). Formalized: Theorem 1.2
-      relative to S_n for every n; Theorem 1.1 for every n in divisor form, with the values of G at
-      fundamental discriminants and the conductor recursion; Conjectures 7.1 (corrected), 7.2, 7.3
-      and 7.4, the formulas (7.3) and (7.4), Bunyakovsky's identity and Proposition 1.2 of Chamberland
-      and Dilcher, in Bernoulli form; Conjecture 7.5, unconditionally (by an elementary bound on
-      defect(n) that replaces the note's class-number argument), and also from a class number bound as
-      in the note. Not formalized: Dirichlet's class number formula and the conductor formula for
-      orders (quoted).
+      The companion note of this formalization, by the same author. It proves Theorems 1.1 and 1.2 for
+      every n >= 1 and derives the conjectures; Section 7 (Table 1) lists the statement of the note that
+      each theorem of Challenge.lean formalizes. Formalized: Theorem 1.2 relative to S_n for every
+      n >= 1; Theorem 1.1 for every n >= 1 in the form of Propositions 6.2 and 6.8 of the note (its
+      second proof: divisor form, the values of G at fundamental discriminants and the conductor
+      recursion); Conjectures 7.1 (corrected), 7.2, 7.3 and 7.4, the formulas (7.3) and (7.4),
+      Bunyakovsky's identity and Proposition 1.2 of Chamberland and Dilcher, in Bernoulli form;
+      Proposition 5.3 of the note and Conjecture 7.5, unconditionally, and Conjecture 7.5 also from a
+      class number bound, stated as a hypothesis. Not formalized: Dirichlet's class number formula and
+      the conductor formula for orders (quoted), and the note's first (analytic) proof of Theorem 1.1.
     license: "CC-BY-4.0"
     author_endorsement: "participated"
   - title: "Jacobi forms and a certain space of modular forms"
@@ -57,7 +59,7 @@ sources:
     type: "article"
     location: "Invent. Math. 94 (1988), 113-146"
     relationship: "background"
-    note: "Proposition A.2 with a = 1 is equivalent to the draft's Theorem 1.1 (the mean residue S_n through Hurwitz class numbers); the formalization proves the odd squarefree case by an elementary argument."
+    note: "Proposition A.2 with a = 1 is equivalent to the note's Theorem 1.1 (the mean residue S_n through Hurwitz class numbers); the formalization proves Theorem 1.1 for every n >= 1 by an elementary argument, in divisor form, with Dirichlet's class number formula and the conductor formula quoted."
     license: "unknown"
     author_endorsement: "n/a"
   - title: "OEIS A048153: a(n) = Sum_{k=1..n} (k^2 mod n)"
@@ -82,9 +84,10 @@ sources:
 
 status:
   scope: >-
-    Formalized: f(n) in terms of S_n and s(n) for every n; square roots modulo prime powers (including
-    2) and modulo odd squarefree n; (n - s(n))/2 - S_n = sum_{d | n} G(d) for every n, with G = 0 on
-    d = 1, 2 (mod 4), G(c) = hK(c) at fundamental discriminants -c and G(l^2 c) = (l - (-c/l)) G(c);
+    Formalized: f(n) in terms of S_n and s(n) for every n >= 1; square roots modulo prime powers
+    (including 2) and modulo odd squarefree n; (n - s(n))/2 - S_n = sum_{d | n} G(d) for every n >= 1,
+    with G = 0 on d = 1, 2 (mod 4), G(c) = hK(c) at fundamental discriminants -c and
+    G(l^2 c) = (l - (-c/l)) G(c) for every prime l and every c > 0 with c = 0, 3 (mod 4);
     (n - 1)/2 - S_n = sum_{d | n, d = 3 (4)} hB(d) for odd squarefree n; Conjectures 7.1 (corrected),
     7.2, 7.3 and 7.4 of Chamberland and Dilcher, their formulas (7.3) and (7.4), Bunyakovsky's identity
     and their Proposition 1.2, in Bernoulli form; defect(n)^2 <= n sqrt(n) (1 + log n)^3 and
@@ -101,7 +104,7 @@ automation:
       models: ["Claude (Anthropic)"]
       framework: "Claude.ai with code execution"
       tool_setup: >-
-        AI-assisted: the Lean code was drafted and repaired by Claude against the draft's statements
+        AI-assisted: the Lean code was drafted and repaired by Claude against the note's statements
         and proofs, compiled locally with lake, and checked with Palomar's lake comparator script.
       cost:
         wall_time: "about two hours (stage one), about five hours (stages two and three) and about two hours (stage four)"
@@ -122,16 +125,154 @@ fidelity:
     symbol. The Kronecker symbol (-c/a) is computed with Jacobi symbols ((a/c) for odd c, chi_4(a)(c/a)
     for even c), which agrees with the Kronecker symbol for c = 0, 3 (mod 4). s(n) is defined as the
     number of square roots of 0 modulo n; s(n)^2 | n, s(p^a q^b) = p^floor(a/2) q^floor(b/2) and
-    s(n) = 1 for squarefree n are proved. The draft's T(n) appears as defect n = (n - s(n))/2 - S_n.
-    The note proves Conjecture 7.5 from a class number bound; conj_7_5 is proved instead from an
-    elementary bound on defect(n) (Fourier expansion on Z/n and Weyl differencing), and the note's
-    route is formalized separately as conj_7_5_of_class_number_bound, with the bound as a hypothesis.
+    s(n) = 1 for squarefree n are proved. The note's T(n) appears as defect n = (n - s(n))/2 - S_n.
+    The note proves Conjecture 7.5 twice (Section 5.3): from a class number bound, and from the
+    elementary bound of its Proposition 5.3 (Fourier expansion on Z/n and Weyl differencing).
+    conj_7_5 formalizes the second proof; conj_7_5_of_class_number_bound formalizes the first, with the
+    class number bound as a hypothesis on G. Theorem 1.2 is false at n = 0 (f(0) = 1/12), so
+    f_mod_four_eq_zero assumes n > 0; G_conductor assumes c > 0, since at c = 0 both sides vanish.
 
 review:
   status: "self-assessed"
   reviewers:
     - "Joseph S. Farland"
   notes: >-
-    Draft: the statements in Challenge.lean have not yet been compared with the paper by the author.
     The definitions in Challenge.lean are copied verbatim from the development and compared by
-    Comparator, bodies included (comparator.json lists no definition holes).
+    Comparator, bodies included (comparator.json lists no definition holes). Table 1 in Section 7 of
+    the note lists the statement of the note that each theorem of Challenge.lean formalizes. The author
+    has not yet compared the statements of Challenge.lean with the note line by line. The scripts in
+    numerics/ run numerical checks of selected statements of the note over finite ranges, listed in
+    numerics/README.md; they are not part of the formal verification. No external referee has reviewed
+    the note or the formalization.
+
+alignment:
+  namespace: "MeanResidue"
+  statements:
+    - source: "Theorem 1.2, n = 1 (mod 4), with defect(n) = (n - s(n))/2 - S_n in place of T(n)"
+      lean: "MeanResidue.f_mod_four_eq_one"
+      module: "Challenge"
+      status: "proved"
+    - source: "Theorem 1.2, n = 3 (mod 4), with defect(n) in place of T(n)"
+      lean: "MeanResidue.f_mod_four_eq_three"
+      module: "Challenge"
+      status: "proved"
+    - source: "Theorem 1.2, n = 0 (mod 4), n >= 1, with defect(n) in place of T(n)"
+      lean: "MeanResidue.f_mod_four_eq_zero"
+      module: "Challenge"
+      status: "proved"
+    - source: "Theorem 1.2, n = 2 (mod 4), with defect(n) in place of T(n)"
+      lean: "MeanResidue.f_mod_four_eq_two"
+      module: "Challenge"
+      status: "proved"
+    - source: "Remark 3.2: the number of square roots of a modulo an odd squarefree n is sum_{d | n} (a/d)"
+      lean: "MeanResidue.cnt_eq_sum_jacobi"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proof of Lemma 6.3(b): a unit u modulo p^m (p an odd prime, m >= 1) has 1 + (u/p) square roots"
+      lean: "MeanResidue.cnt_unit"
+      module: "Challenge"
+      status: "proved"
+    - source: "s(n) = 1 for squarefree n (Section 5.1)"
+      lean: "MeanResidue.s_squarefree"
+      module: "Challenge"
+      status: "proved"
+    - source: "Remark 3.2: Theorem 1.1 for odd squarefree n (Bernoulli form)"
+      lean: "MeanResidue.defect_squarefree"
+      module: "Challenge"
+      status: "proved"
+    - source: "Remark 3.2: the formula for S_n at odd squarefree n (Bernoulli form)"
+      lean: "MeanResidue.S_squarefree"
+      module: "Challenge"
+      status: "proved"
+    - source: "Corollary 1.3(c), Conjecture 7.3 of Chamberland and Dilcher, n = 1 (mod 4) (Bernoulli form)"
+      lean: "MeanResidue.conj_7_3_one"
+      module: "Challenge"
+      status: "proved"
+    - source: "Corollary 1.3(c), Conjecture 7.3 of Chamberland and Dilcher, n = 3 (mod 4) (Bernoulli form)"
+      lean: "MeanResidue.conj_7_3_three"
+      module: "Challenge"
+      status: "proved"
+    - source: "Conjecture 7.4 of Chamberland and Dilcher, odd squarefree n (Section 5.1, Bernoulli form)"
+      lean: "MeanResidue.conj_7_4"
+      module: "Challenge"
+      status: "proved"
+    - source: "Bunyakovsky's identity f(p) = 0 for primes p = 1 (mod 4) (Section 5.4)"
+      lean: "MeanResidue.bunyakovsky"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 1.2 of Chamberland and Dilcher (Section 5.4, Bernoulli form)"
+      lean: "MeanResidue.f_prime_three"
+      module: "Challenge"
+      status: "proved"
+    - source: "Formula (7.3) of Chamberland and Dilcher, n = pq (Section 5.2, Bernoulli form)"
+      lean: "MeanResidue.S_pq"
+      module: "Challenge"
+      status: "proved"
+    - source: "Formula (7.4) of Chamberland and Dilcher, n = pq (Section 5.2, Bernoulli form)"
+      lean: "MeanResidue.f_pq"
+      module: "Challenge"
+      status: "proved"
+    - source: "Lemma 6.3(a)"
+      lean: "MeanResidue.cnt_pow_add_two_mul_sq"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proof of Lemma 6.3(c): square roots of odd numbers modulo 2^m, m >= 3"
+      lean: "MeanResidue.cnt_two_pow_unit"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 6.2, every n >= 1"
+      lean: "MeanResidue.defect_eq_sum_G"
+      module: "Challenge"
+      status: "proved"
+    - source: "Corollary 1.3(d), every n >= 1, with gamma(n) on the right"
+      lean: "MeanResidue.moebius_defect"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 6.8(a), d = 1 (mod 4)"
+      lean: "MeanResidue.G_one_mod_four"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 6.8(a), d = 2 (mod 4)"
+      lean: "MeanResidue.G_two_mod_four"
+      module: "Challenge"
+      status: "proved"
+    - source: "Propositions 6.2 and 6.8(a) for odd n: defect(n) = sum of gamma(d) over d | n, d = 3 (mod 4)"
+      lean: "MeanResidue.defect_odd"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 6.8(b), squarefree c = 3 (mod 4), with the Jacobi symbol"
+      lean: "MeanResidue.G_squarefree"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 6.8(c), c = 3 (mod 4)"
+      lean: "MeanResidue.G_peel"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 6.8(b)"
+      lean: "MeanResidue.G_fundamental"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 6.8(c), every prime l and every c > 0 with c = 0, 3 (mod 4)"
+      lean: "MeanResidue.G_conductor"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 5.1 (Conjecture 7.1 of Chamberland and Dilcher, sign corrected), all alpha, beta >= 0 (Bernoulli form)"
+      lean: "MeanResidue.conj_7_1"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 5.2 (Conjecture 7.2 of Chamberland and Dilcher), all alpha, beta >= 0 (Bernoulli form)"
+      lean: "MeanResidue.conj_7_2"
+      module: "Challenge"
+      status: "proved"
+    - source: "Section 5.3, first proof of Conjecture 7.5, with the class number bound as a hypothesis on gamma"
+      lean: "MeanResidue.conj_7_5_of_class_number_bound"
+      module: "Challenge"
+      status: "proved"
+    - source: "Proposition 5.3"
+      lean: "MeanResidue.defect_sq_le"
+      module: "Challenge"
+      status: "proved"
+    - source: "Corollary 1.3(e), Conjecture 7.5 of Chamberland and Dilcher (Section 5.3, second proof)"
+      lean: "MeanResidue.conj_7_5"
+      module: "Challenge"
+      status: "proved"

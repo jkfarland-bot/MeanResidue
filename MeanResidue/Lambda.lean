@@ -6,7 +6,7 @@ public import MeanResidue.Conjectures
 @[expose] public section
 
 /-!
-# The sawtooth functional and the divisor form of Theorem 1.1 for every `n`
+# The sawtooth functional and the divisor form of Theorem 1.1 for every `n ≥ 1`
 
 `Lam d g = -(1/d) ∑_{0<b<d} g(b) (b - d/2)` (a finite sawtooth sum). Then:
 * `defect n = Lam n (cnt n ·)` (from `defect_mul`);

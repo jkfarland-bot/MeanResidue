@@ -2,8 +2,11 @@
 
 Lean 4 / Mathlib formalization of the proof of the conjectures of M. Chamberland and K. Dilcher
 (*Sums of the floor function related to class numbers of imaginary quadratic fields*, arXiv:2510.04387,
-Section 7) in J. S. Farland, *Mean quadratic residues, floor sums of square roots, and class numbers*
-(draft, 2026).
+Section 7) in J. S. Farland, *Mean quadratic residues, floor sums of square roots, and class numbers: the
+conjectures of Chamberland and Dilcher*, preprint, Zenodo, 2026,
+[doi:10.5281/zenodo.24508994](https://doi.org/10.5281/zenodo.24508994) (version v1.0:
+[doi:10.5281/zenodo.24508995](https://doi.org/10.5281/zenodo.24508995)). Table 1 in Section 7 of the note
+lists the statement of the note that each theorem of `Challenge.lean` formalizes.
 
 For `n ≥ 1` put `S n = (1/n) ∑_{k<n} Rem(k² ÷ n)`, `f n = ∑_{j=1}^{⌊n/4⌋} ⌊√(jn)⌋ - (n² - 1)/12`,
 `s n = #{k < n : n ∣ k²}`, `defect n = (n - s n)/2 - S n`, and `hB d = -(1/d) ∑_{a<d} a (a/d)` with the
@@ -14,7 +17,7 @@ Dirichlet's formula). Let `cnt n b` be the number of square roots of `b` modulo 
 
 ## Stage one
 
-- **Theorem 1.2, for every `n`** (`f_mod_four_eq_one`, `_three`, `_zero`, `_two`):
+- **Theorem 1.2, for every `n ≥ 1`** (`f_mod_four_eq_one`, `_three`, `_zero`, `_two`):
   `f n = (s n - 1)/4 - defect n/2`, `(s n - n)/4 - defect n/2`, `n/8 + s n/4 - defect n/2`,
   `-n/8 + (s n - 1)/4 - defect n/2` for `n ≡ 1, 3, 0, 2 (mod 4)`.
 - **Root count** (`cnt_eq_sum_jacobi`): for odd squarefree `n`, the number of square roots of `a`
@@ -34,18 +37,18 @@ Dirichlet's formula). Let `cnt n b` be the number of square roots of `b` modulo 
 - **Square roots modulo prime powers** (`cnt_pow_add_two_mul_sq`, `cnt_two_pow_unit`):
   `cnt (p^(i+2)) (p² b) = p cnt (p^i) b` for every prime `p`; an odd `u` has `4` square roots modulo
   `2^m` (`m ≥ 3`) if `u ≡ 1 (mod 8)` and none otherwise.
-- **Theorem 1.1 for every `n`, divisor form** (`defect_eq_sum_G`): `(n - s(n))/2 - S n = ∑_{d ∣ n} G d`.
+- **Theorem 1.1 for every `n ≥ 1`, divisor form** (`defect_eq_sum_G`): `(n - s(n))/2 - S n = ∑_{d ∣ n} G d`.
   The proof: `cnt n = ∑_{d ∣ n} phi d` (Möbius inversion), `n defect n` is the sawtooth sum of `cnt n`,
   and a function periodic modulo `d` has the same sawtooth sum at every multiple of `d`.
 - **The terms `G c`**: `G c = 0` for `c ≡ 1, 2 (mod 4)` (`G_one_mod_four`, `G_two_mod_four`);
   `G c = hK c = -(1/c) ∑_{a<c} a (-c/a)` when `-c` is a fundamental discriminant (`G_fundamental`); and the
-  conductor recursion `G (ℓ² c) = (ℓ - (-c/ℓ)) G c` for every prime `ℓ` and `c ≡ 0, 3 (mod 4)`
-  (`G_conductor`), with the Kronecker symbol `(-c/ℓ)` computed from Jacobi symbols (`kron`). With
+  conductor recursion `G (ℓ² c) = (ℓ - (-c/ℓ)) G c` for every prime `ℓ` and every `c > 0` with
+  `c ≡ 0, 3 (mod 4)` (`G_conductor`), with the Kronecker symbol `(-c/ℓ)` computed from Jacobi symbols (`kron`). With
   Dirichlet's formula `hK c = h*(-c)` and the conductor formula `h*(ℓ² D) = (ℓ - (D/ℓ)) h*(D)` (both quoted)
   these say `G c = h*(-c)`, which is Theorem 1.1. The tools: the twist rule `phi d (x b) = (x/d) phi d b`
   for odd `d`, the even and odd parts of `phi (2^j)` (eigenfunctions of the odd twists with eigenvalues
   `χ₈^j` and `χ₄ χ₈^j`), and a peeling lemma for the sawtooth functional under dilations.
-- **Möbius form** (`moebius_defect`): `∑_{d ∣ n} μ(n/d) defect(d) = G n` for every `n` (Corollary 1.3(d)).
+- **Möbius form** (`moebius_defect`): `∑_{d ∣ n} μ(n/d) defect(d) = G n` for every `n ≥ 1` (Corollary 1.3(d)).
 - **Conjecture 7.1** (`conj_7_1`), with the sign of its `h*(-pq)` term corrected, and **Conjecture 7.2**
   (`conj_7_2`), for `n = p^α q^β` and all `α, β ≥ 0`, in Bernoulli form, with `[e]_ℓ = 1 + ℓ + ⋯ + ℓ^(e-1)`
   (`geom`).
@@ -64,7 +67,7 @@ Dirichlet's formula). Let `cnt n b` be the number of square roots of `b` modulo 
 - **Conjecture 7.5** (`conj_7_5`), unconditionally: `f(n)/n → 1/8, 0, -1/8, -1/4` along
   `n ≡ 0, 1, 2, 3 (mod 4)`.
 
-Prior work. The formula for `S n` behind all of this (Theorem 1.1 of the draft, for every `n`) is the case
+Prior work. The formula for `S n` behind all of this (Theorem 1.1 of the note, for every `n ≥ 1`) is the case
 `a = 1` of Proposition A.2 of N.-P. Skoruppa and D. Zagier, *Jacobi forms and a certain space of modular forms*,
 Invent. Math. 94 (1988), and was recorded in the form `∑_{k≤n} (k² mod n) = n(n - m)/2 - 2n ∑ h(D)/w(D)` in OEIS
 A048153 by O. Kutal (2026). The proof formalized here is elementary: root counts modulo prime powers, Möbius
@@ -82,7 +85,8 @@ lake build
 
 No `sorry`, no `native_decide`. Every result depends only on `propext`, `Classical.choice` and
 `Quot.sound`. `Challenge.lean` states the results with `sorry`; `Solution.lean` imports the
-development; Palomar's `lake comparator` accepts the pair with the Lean, nanoda and con-ron kernels.
+development. Lean's comparator (`lake comparator`, run by Palomar's script) accepts the pair, with the
+proofs replayed in the Lean, nanoda and con-ron kernels.
 
 ## Not formalized
 
@@ -95,6 +99,8 @@ development; Palomar's `lake comparator` accepts the pair with the Lean, nanoda 
 ## Numerical checks
 
 The folder [`numerics/`](numerics/) holds the Python scripts behind Section 8 of the note, with their outputs.
-They check the note's statements in exact rational arithmetic, with class numbers counted from reduced
-forms, independently of the Lean development. They are not part of the formalization or of the comparator
-check.
+They run numerical checks of selected statements of the note over finite ranges, listed in
+[`numerics/README.md`](numerics/README.md), with class numbers counted from reduced forms (exact rational
+arithmetic for the identities, floating point where complex exponentials or partial sums of `L(1, D)`
+enter), independently of the Lean development. They are not part of the formalization or of the
+comparator check.
