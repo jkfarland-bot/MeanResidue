@@ -140,7 +140,7 @@ review:
     The definitions in Challenge.lean are copied verbatim from the development and compared by
     Comparator, bodies included (comparator.json lists no definition holes). Table 1 in Section 7 of
     the note lists the statement of the note that each theorem of Challenge.lean formalizes. The author
-    has not yet compared the statements of Challenge.lean with the note line by line. The scripts in
+    has compared the statements of Challenge.lean with the note and approves them. The scripts in
     numerics/ run numerical checks of selected statements of the note over finite ranges, listed in
     numerics/README.md; they are not part of the formal verification. No external referee has reviewed
     the note or the formalization.
