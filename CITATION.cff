@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "MeanResidue: a Lean 4 formalization of mean quadratic residues, floor sums of square roots, and the conjectures of Chamberland and Dilcher"
+authors:
+  - family-names: Farland
+    given-names: Joseph S.
+version: v0.1.0
+license: Apache-2.0
+repository-code: "https://github.com/jkfarland-bot/MeanResidue"
+keywords:
+  - floor sums
+  - quadratic residues
+  - Jacobi symbol
+  - class numbers
+  - Lean 4
+  - Mathlib
+  - formal verification

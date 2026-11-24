@@ -1,0 +1,19 @@
+{
+  "title": "MeanResidue: a Lean 4 formalization of mean quadratic residues, floor sums of square roots, and the conjectures of Chamberland and Dilcher",
+  "upload_type": "software",
+  "creators": [
+    {
+      "name": "Farland, Joseph S."
+    }
+  ],
+  "license": "Apache-2.0",
+  "keywords": [
+    "Lean 4",
+    "Mathlib",
+    "floor sums",
+    "quadratic residues",
+    "class numbers",
+    "formal verification"
+  ],
+  "description": "Lean 4 / Mathlib formalization, stage one, of the proof of the conjectures of M. Chamberland and K. Dilcher (arXiv:2510.04387, Section 7). For every n, the floor sum f(n) = sum_{j <= n/4} floor(sqrt(jn)) - (n^2-1)/12 is expressed through the mean quadratic residue S_n and the number s(n) of square roots of 0 modulo n. For odd squarefree n, the number of square roots of a modulo n is the sum of the Jacobi symbols (a/d) over d | n, and (n-1)/2 - S_n is the sum over the divisors d = 3 (mod 4) of the Bernoulli form -(1/d) sum_{a<d} a (a/d) of the class number h*(-d). Conjectures 7.3 and 7.4, the formulas (7.3), (7.4) for n = pq, Bunyakovsky's identity and Proposition 1.2 of Chamberland and Dilcher follow in Bernoulli form. Also: the number of square roots of a unit modulo an odd prime power. Dirichlet's class number formula is quoted, not formalized. The formula for S_n is the case a = 1 of Proposition A.2 of Skoruppa and Zagier (Invent. Math. 94, 1988). No sorry, no native_decide; standard axioms only."
+}
