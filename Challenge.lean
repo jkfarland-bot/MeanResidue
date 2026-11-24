@@ -248,10 +248,25 @@ theorem conj_7_2 {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hpq : p ≠ q) (hp4 
       (jacobiSym q p * geom p (α / 2) + geom p (α / 2 + 1)) * geom q ((β + 1) / 2) * hB q := by
   sorry
 
-/-- **Conjecture 7.5 of Chamberland and Dilcher**, from the class number bound
-`|G c| ≤ C √c (1 + log c)`: `f(n)/n → 1/8, 0, -1/8, -1/4` along `n ≡ 0, 1, 2, 3 (mod 4)`. -/
-theorem conj_7_5 {C : ℝ}
+/-- **Conjecture 7.5 from a class number bound**: if `|G c| ≤ C √c (1 + log c)`, then
+`f(n)/n → 1/8, 0, -1/8, -1/4` along `n ≡ 0, 1, 2, 3 (mod 4)`. (The bound holds with `C = 1`; Weyl.lean
+proves the conjecture without it.) -/
+theorem conj_7_5_of_class_number_bound {C : ℝ}
     (hC : ∀ c : ℕ, 0 < c → |(G c : ℝ)| ≤ C * Real.sqrt c * (1 + Real.log c)) :
+    Tendsto (fun k : ℕ => (f (4 * k) : ℝ) / (4 * k : ℕ)) atTop (𝓝 (1 / 8)) ∧
+    Tendsto (fun k : ℕ => (f (4 * k + 1) : ℝ) / (4 * k + 1 : ℕ)) atTop (𝓝 0) ∧
+    Tendsto (fun k : ℕ => (f (4 * k + 2) : ℝ) / (4 * k + 2 : ℕ)) atTop (𝓝 (-1 / 8)) ∧
+    Tendsto (fun k : ℕ => (f (4 * k + 3) : ℝ) / (4 * k + 3 : ℕ)) atTop (𝓝 (-1 / 4)) := by
+  sorry
+
+/-- **The unconditional bound**: `defect(n)² ≤ n √n (1 + log n)³`. -/
+theorem defect_sq_le (n : ℕ) (hn : 0 < n) :
+    ((defect n : ℚ) : ℝ) ^ 2 ≤ n * Real.sqrt n * (1 + Real.log n) ^ 3 := by
+  sorry
+
+/-- **Conjecture 7.5 of Chamberland and Dilcher** (with the fourth limit read as `f(4n+3)/(4n+3)`):
+`f(n)/n → 1/8, 0, -1/8, -1/4` as `n → ∞` through `n ≡ 0, 1, 2, 3 (mod 4)`. -/
+theorem conj_7_5 :
     Tendsto (fun k : ℕ => (f (4 * k) : ℝ) / (4 * k : ℕ)) atTop (𝓝 (1 / 8)) ∧
     Tendsto (fun k : ℕ => (f (4 * k + 1) : ℝ) / (4 * k + 1 : ℕ)) atTop (𝓝 0) ∧
     Tendsto (fun k : ℕ => (f (4 * k + 2) : ℝ) / (4 * k + 2 : ℕ)) atTop (𝓝 (-1 / 8)) ∧

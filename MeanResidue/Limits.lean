@@ -235,15 +235,13 @@ theorem comp_four_mul_add {u : ℕ → ℝ} {L : ℝ} (hu : Tendsto u atTop (�
     Tendsto (fun k : ℕ => u (4 * k + r)) atTop (𝓝 L) :=
   hu.comp (tendsto_atTop_atTop.2 (fun b => ⟨b, fun k hk => by omega⟩))
 
-/-- **Conjecture 7.5 of Chamberland and Dilcher**, from the class number bound
-`|G c| ≤ C √c (1 + log c)`: `f(n)/n → 1/8, 0, -1/8, -1/4` along `n ≡ 0, 1, 2, 3 (mod 4)`. -/
-theorem conj_7_5 {C : ℝ}
-    (hC : ∀ c : ℕ, 0 < c → |(G c : ℝ)| ≤ C * Real.sqrt c * (1 + Real.log c)) :
+/-- Theorem 1.2 turns `defect n = o(n)` into the four limits of Conjecture 7.5. -/
+theorem limits_of_defect_div_tendsto
+    (hD : Tendsto (fun n : ℕ => (defect n : ℝ) / n) atTop (𝓝 0)) :
     Tendsto (fun k : ℕ => (f (4 * k) : ℝ) / (4 * k : ℕ)) atTop (𝓝 (1 / 8)) ∧
     Tendsto (fun k : ℕ => (f (4 * k + 1) : ℝ) / (4 * k + 1 : ℕ)) atTop (𝓝 0) ∧
     Tendsto (fun k : ℕ => (f (4 * k + 2) : ℝ) / (4 * k + 2 : ℕ)) atTop (𝓝 (-1 / 8)) ∧
     Tendsto (fun k : ℕ => (f (4 * k + 3) : ℝ) / (4 * k + 3 : ℕ)) atTop (𝓝 (-1 / 4)) := by
-  have hD := defect_div_tendsto hC
   have hS := s_div_tendsto
   have hI : Tendsto (fun n : ℕ => 1 / (n : ℝ)) atTop (𝓝 0) := tendsto_one_div_atTop_nhds_zero_nat
   -- `f(n)/n = a + (s/n)/4 + b (1/n)/4 - (defect/n)/2` in each class
@@ -286,5 +284,16 @@ theorem conj_7_5 {C : ℝ}
       push_cast
       field_simp
       ring)
+
+/-- **Conjecture 7.5 from a class number bound**: if `|G c| ≤ C √c (1 + log c)`, then
+`f(n)/n → 1/8, 0, -1/8, -1/4` along `n ≡ 0, 1, 2, 3 (mod 4)`. (The bound holds with `C = 1`; Weyl.lean
+proves the conjecture without it.) -/
+theorem conj_7_5_of_class_number_bound {C : ℝ}
+    (hC : ∀ c : ℕ, 0 < c → |(G c : ℝ)| ≤ C * Real.sqrt c * (1 + Real.log c)) :
+    Tendsto (fun k : ℕ => (f (4 * k) : ℝ) / (4 * k : ℕ)) atTop (𝓝 (1 / 8)) ∧
+    Tendsto (fun k : ℕ => (f (4 * k + 1) : ℝ) / (4 * k + 1 : ℕ)) atTop (𝓝 0) ∧
+    Tendsto (fun k : ℕ => (f (4 * k + 2) : ℝ) / (4 * k + 2 : ℕ)) atTop (𝓝 (-1 / 8)) ∧
+    Tendsto (fun k : ℕ => (f (4 * k + 3) : ℝ) / (4 * k + 3 : ℕ)) atTop (𝓝 (-1 / 4)) :=
+  limits_of_defect_div_tendsto (defect_div_tendsto hC)
 
 end MeanResidue

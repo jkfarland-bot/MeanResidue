@@ -14,3 +14,4 @@ public import MeanResidue.TwoPrimes
 public import MeanResidue.TwoAdic
 public import MeanResidue.EvenPeel
 public import MeanResidue.Limits
+public import MeanResidue.Weyl

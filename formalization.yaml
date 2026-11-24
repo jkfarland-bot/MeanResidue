@@ -17,8 +17,11 @@ project:
     (quoted) these give G(c) = h*(-c). It derives Conjectures 7.1 (with the sign of one term
     corrected), 7.2, 7.3 and 7.4 of Chamberland and Dilcher, their formulas (7.3) and (7.4) for n = pq,
     Bunyakovsky's identity f(p) = 0 for p = 1 (mod 4) and their Proposition 1.2, with the class
-    numbers in Bernoulli form, and Conjecture 7.5 (the limits of f(n)/n) from the class number bound
-    |G(c)| <= C sqrt(c) (1 + log c), stated as a hypothesis.
+    numbers in Bernoulli form, and Conjecture 7.5 (the limits of f(n)/n) unconditionally, from the
+    bound defect(n)^2 <= n sqrt(n) (1 + log n)^3, proved with the discrete Fourier transform on Z/n,
+    explicit Fourier coefficients of the sawtooth and Weyl differencing for the quadratic Gauss sums
+    (no class numbers). A second proof of Conjecture 7.5 from the class number bound
+    |G(c)| <= C sqrt(c) (1 + log c), stated as a hypothesis, follows the note.
   authors:
     - "Joseph S. Farland"
   license: "Apache-2.0"
@@ -41,9 +44,10 @@ sources:
       relative to S_n for every n; Theorem 1.1 for every n in divisor form, with the values of G at
       fundamental discriminants and the conductor recursion; Conjectures 7.1 (corrected), 7.2, 7.3
       and 7.4, the formulas (7.3) and (7.4), Bunyakovsky's identity and Proposition 1.2 of Chamberland
-      and Dilcher, in Bernoulli form; Conjecture 7.5 from a class number bound. Not formalized:
-      Dirichlet's class number formula and the conductor formula for orders (quoted); the class
-      number bound used for Conjecture 7.5 (a hypothesis).
+      and Dilcher, in Bernoulli form; Conjecture 7.5, unconditionally (by an elementary bound on
+      defect(n) that replaces the note's class-number argument), and also from a class number bound as
+      in the note. Not formalized: Dirichlet's class number formula and the conductor formula for
+      orders (quoted).
     license: "CC-BY-4.0"
     author_endorsement: "participated"
   - title: "Jacobi forms and a certain space of modular forms"
@@ -83,9 +87,10 @@ status:
     d = 1, 2 (mod 4), G(c) = hK(c) at fundamental discriminants -c and G(l^2 c) = (l - (-c/l)) G(c);
     (n - 1)/2 - S_n = sum_{d | n, d = 3 (4)} hB(d) for odd squarefree n; Conjectures 7.1 (corrected),
     7.2, 7.3 and 7.4 of Chamberland and Dilcher, their formulas (7.3) and (7.4), Bunyakovsky's identity
-    and their Proposition 1.2, in Bernoulli form; Conjecture 7.5 under the hypothesis
+    and their Proposition 1.2, in Bernoulli form; defect(n)^2 <= n sqrt(n) (1 + log n)^3 and
+    Conjecture 7.5, unconditionally; Conjecture 7.5 also under the hypothesis
     |G(c)| <= C sqrt(c) (1 + log c). Not formalized: Dirichlet's class number formula and the conductor
-    formula (quoted); the class number bound (hypothesis of conj_7_5).
+    formula (quoted).
   sorry_count: 0
   sorry_in_definitions: 0
   axioms: []
@@ -99,7 +104,7 @@ automation:
         AI-assisted: the Lean code was drafted and repaired by Claude against the draft's statements
         and proofs, compiled locally with lake, and checked with Palomar's lake comparator script.
       cost:
-        wall_time: "about two hours (stage one) and about five hours (stages two and three)"
+        wall_time: "about two hours (stage one), about five hours (stages two and three) and about two hours (stage four)"
         spend_usd: "subscription-based"
         hardware: "API-only plus local machine"
       prompting_notes: "The model was asked to formalize the proof of the Chamberland-Dilcher conjectures without sorry or native_decide."
@@ -118,7 +123,9 @@ fidelity:
     for even c), which agrees with the Kronecker symbol for c = 0, 3 (mod 4). s(n) is defined as the
     number of square roots of 0 modulo n; s(n)^2 | n, s(p^a q^b) = p^floor(a/2) q^floor(b/2) and
     s(n) = 1 for squarefree n are proved. The draft's T(n) appears as defect n = (n - s(n))/2 - S_n.
-    Conjecture 7.5 takes the class number bound as a hypothesis.
+    The note proves Conjecture 7.5 from a class number bound; conj_7_5 is proved instead from an
+    elementary bound on defect(n) (Fourier expansion on Z/n and Weyl differencing), and the note's
+    route is formalized separately as conj_7_5_of_class_number_bound, with the bound as a hypothesis.
 
 review:
   status: "self-assessed"
