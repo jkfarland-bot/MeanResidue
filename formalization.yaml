@@ -22,6 +22,11 @@ project:
     explicit Fourier coefficients of the sawtooth and Weyl differencing for the quadratic Gauss sums
     (no class numbers). A second proof of Conjecture 7.5 from the class number bound
     |G(c)| <= C sqrt(c) (1 + log c), stated as a hypothesis, follows the first proof in the note.
+    The conjectures have probably been proved before this formalization and its note: Conjecture 7.2 in an
+    AI-generated write-up on the Principia Math platform (MathDB problem 370786, 29 September 2026), and,
+    according to its listing, all five in a preprint by S. K. Jha posted on ResearchGate on 28 October 2026,
+    which the author has not been able to consult. No priority is claimed for the conjectures; the
+    contribution here is the machine-checked proof.
   authors:
     - "Joseph S. Farland"
   license: "Apache-2.0"
@@ -37,7 +42,7 @@ sources:
     authors:
       - "Joseph S. Farland"
     type: "article"
-    location: "Preprint, Zenodo, 2026, https://doi.org/10.5281/zenodo.24508995 (v1.0); all versions https://doi.org/10.5281/zenodo.24508994"
+    location: "Preprint, Zenodo, 2026, all versions https://doi.org/10.5281/zenodo.24508994 (v1.0: https://doi.org/10.5281/zenodo.24508995)"
     relationship: "formalizes"
     note: >-
       The companion note of this formalization, by the same author. It proves Theorems 1.1 and 1.2 for
@@ -79,6 +84,15 @@ sources:
     location: "arXiv:2510.04387"
     relationship: "formalizes"
     note: "Source of the conjectures (Section 7) and of Proposition 1.2; Bunyakovsky's identity is their Proposition 1.1."
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Quadratic remainder sums for two primes congruent to three modulo four"
+    authors:
+      - "Principia Math (AI-generated write-up)"
+    type: "other"
+    location: "Principia Math, solution of MathDB problem 370786, dated 29 September 2026, https://principia-math.com"
+    relationship: "background"
+    note: "An earlier proof of Conjecture 7.2 for all exponents, by counting square roots of units and splitting by the two valuations (the note's second method for two primes). Not formalized there."
     license: "unknown"
     author_endorsement: "n/a"
 
@@ -143,7 +157,9 @@ review:
     has compared the statements of Challenge.lean with the note and approves them. The scripts in
     numerics/ run numerical checks of selected statements of the note over finite ranges, listed in
     numerics/README.md; they are not part of the formal verification. No external referee has reviewed
-    the note or the formalization.
+    the note or the formalization. Earlier work: Conjecture 7.2 was proved in a Principia Math write-up
+    (29 September 2026), and a preprint by S. K. Jha (ResearchGate, 28 October 2026, not consulted) is
+    listed as a solution of the conjectures; the note (from version 1.2) says so and claims no priority.
 
 alignment:
   namespace: "MeanResidue"

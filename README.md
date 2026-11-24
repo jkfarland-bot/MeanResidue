@@ -4,9 +4,25 @@ Lean 4 / Mathlib formalization of the proof of the conjectures of M. Chamberland
 (*Sums of the floor function related to class numbers of imaginary quadratic fields*, arXiv:2510.04387,
 Section 7) in J. S. Farland, *Mean quadratic residues, floor sums of square roots, and class numbers: the
 conjectures of Chamberland and Dilcher*, preprint, Zenodo, 2026,
-[doi:10.5281/zenodo.24508994](https://doi.org/10.5281/zenodo.24508994) (version v1.0:
-[doi:10.5281/zenodo.24508995](https://doi.org/10.5281/zenodo.24508995)). Table 1 in Section 7 of the note
-lists the statement of the note that each theorem of `Challenge.lean` formalizes.
+[doi:10.5281/zenodo.24508994](https://doi.org/10.5281/zenodo.24508994) (all versions). Table 1 in Section 7
+of the note lists the statement of the note that each theorem of `Challenge.lean` formalizes.
+
+**Earlier work on the conjectures.** The conjectures have probably been proved before this formalization and
+its note: Conjecture 7.2 in an AI-generated write-up on the Principia Math platform
+(*Quadratic remainder sums for two primes congruent to three modulo four*, solution of MathDB problem
+370786, 29 September 2026), and, according to its listing, all five in a preprint by S. K. Jha posted on
+ResearchGate on 28 October 2026, which we have not been able to consult. We make no claim of priority for the
+conjectures. What this repository offers is a machine-checked proof:
+
+- formal statements and proofs of all five conjectures (7.1 with the sign of one term corrected), of the
+  formula for `f(n)` for every `n ≥ 1`, of the formula for `S n` in divisor form, and of an unconditional
+  bound that gives Conjecture 7.5 without class numbers;
+- the statements in `Challenge.lean` are checked against the proofs by Lean's comparator, and the proofs are
+  replayed in the Lean, nanoda and con-ron kernels;
+- version 1.0.2 is listed in the Palomar registry,
+  [entry PALOMAR-2026-11-24-000022](https://palomar-registry.org/entry.html?id=PALOMAR-2026-11-24-000022&version=1);
+  later versions change only the documentation;
+- Python scripts for numerical checks of the note, in [`numerics/`](numerics/).
 
 For `n ≥ 1` put `S n = (1/n) ∑_{k<n} Rem(k² ÷ n)`, `f n = ∑_{j=1}^{⌊n/4⌋} ⌊√(jn)⌋ - (n² - 1)/12`,
 `s n = #{k < n : n ∣ k²}`, `defect n = (n - s n)/2 - S n`, and `hB d = -(1/d) ∑_{a<d} a (a/d)` with the
@@ -72,8 +88,9 @@ Prior work. The formula for `S n` behind all of this (Theorem 1.1 of the note, f
 Invent. Math. 94 (1988), and was recorded in the form `∑_{k≤n} (k² mod n) = n(n - m)/2 - 2n ∑ h(D)/w(D)` in OEIS
 A048153 by O. Kutal (2026). The proof formalized here is elementary: root counts modulo prime powers, Möbius
 inversion, the twist rule and a sawtooth functional; class numbers enter only through Dirichlet's formula and the
-conductor formula, which are quoted. The derivation of Chamberland and Dilcher's conjectures from the formula is the
-new part.
+conductor formula, which are quoted. The derivation of Chamberland and Dilcher's conjectures from the formula has
+probably been given before (see *Earlier work on the conjectures* above); what this repository adds is its formal
+verification.
 
 Toolchain: `leanprover/lean4:v4.35.0`, Mathlib `v4.35.0`.
 

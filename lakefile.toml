@@ -1,5 +1,5 @@
 name = "MeanResidue"
-version = "1.0.2"
+version = "1.0.3"
 defaultTargets = ["MeanResidue", "Challenge", "Solution"]
 
 [[require]]
